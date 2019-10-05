@@ -12,11 +12,18 @@ export default function Yelp({ setSearchResults }) {
 
   const uri = `http://${manifest.debuggerHost.split(":").shift()}:8080`;
 
+  console.log(uri);
+
+  let axiosTest = () => {
+    axios.get(`${uri}`).then(res => console.log(res));
+  };
+
   let getYelpData = () => {
     axios
       .get(`${uri}/yelp/coffee/${location}`)
       .then(res => {
         setSearchResults(res.data.splice(0, 5));
+        console.log(res);
       })
       .catch(err => console.log(err));
   };
@@ -32,7 +39,7 @@ export default function Yelp({ setSearchResults }) {
         <Button
           style={styles.button}
           title="test"
-          onPress={() => getYelpData()}
+          onPress={() => axiosTest()}
         />
       </View>
     </View>

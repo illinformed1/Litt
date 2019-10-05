@@ -11,9 +11,11 @@ const client = yelp.client(
 
 router.get("/", (req, res) => {
   res.send("Yelp Home");
+  console.log("cool");
 });
 
 router.get("/:term/:location", (req, res) => {
+  console.log("beans");
   client
     .search({
       term: `${req.params.term}`,
